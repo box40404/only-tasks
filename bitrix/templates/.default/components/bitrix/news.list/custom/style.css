@@ -1,0 +1,22 @@
+div.news-list
+{
+	word-wrap: break-word;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+div.news-list img.preview_picture
+{
+	float:left;
+	margin:0 4px 6px 0;
+}
+.news-date-time {
+	color:#486DAA;
+}
+.news-item
+{
+	display: flex;
+	flex-direction: column;
+	max-width: min-content;
+}
