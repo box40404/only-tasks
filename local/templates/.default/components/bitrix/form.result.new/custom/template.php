@@ -56,16 +56,17 @@ if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?end
 				<div class="input__label-text"><?=$arQuestion["CAPTION"]?><?if ($arQuestion["REQUIRED"] == "Y") echo '*'?></div>
 
 				<?php
+				$name = 'form_' . $arQuestion['STRUCTURE'][0]['FIELD_TYPE'] . '_' . $arQuestion['STRUCTURE'][0]['FIELD_ID'];
 				$input = match($FIELD_SID)
 				{
-					'medicine_name' => '<input class="input__input" type="text" id="medicine_name" name="medicine_name" required>',
-					'medicine_email' => '<input class="input__input" type="email" id="medicine_email" name="medicine_email" required>',
-					'medicine_company' => '<input class="input__input" type="text" id="medicine_company" name="medicine_company" required="">',
+					'medicine_name' => '<input class="input__input" type="text" id="medicine_name" name="' . $name . '" required>',
+					'medicine_email' => '<input class="input__input" type="email" id="medicine_email" name="' . $name . '" required>',
+					'medicine_company' => '<input class="input__input" type="text" id="medicine_company" name="' . $name . '" required="">',
 					'medicine_phone' => "<input class='input__input' type='tel' id='medicine_phone'
 											data-inputmask=\"'mask': '+79999999999', 'clearIncomplete': 'true'\" maxlength='12'
-                       						x-autocompletetype='phone-full' name='medicine_phone' required>",
-					'medicine_message' => '<textarea class="input__input" type="text" id="medicine_message" name="medicine_message"></textarea>',
-					default => '<input class="input__input" type="<?= $arQuestion[0]["FIELD_TYPE"] ?>" id="<?= $FIELD_SID ?>" name="$FIELD_SID"
+                       						x-autocompletetype='phone-full' name=$name required>",
+					'medicine_message' => '<textarea class="input__input" type="text" id="medicine_message" name="' . $name . '"></textarea>',
+					default => '<input class="input__input" type="' . $arQuestion[0]["FIELD_TYPE"] . '" id="' . $FIELD_SID . '" name="' . $name . '"
 									<?php if ($arQuestion["REQUIRED"] == "Y") required ?>'
 				};
 				?>
@@ -94,10 +95,10 @@ if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?end
                 ознакомлены, полностью согласны и&nbsp;принимаете условия &laquo;Согласия на&nbsp;обработку персональных
                 данных&raquo;.
             </div>
-            <button class="form-button contact-form__bottom-button" data-success="Отправлено" data-error="Ошибка отправки"
-					<?php (intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "") ?> type="submit">
-                <div class="form-button__title"><?= $arResult['arForm']['BUTTON'] ?></div>
-            </button>
+            <input class="form-button contact-form__bottom-button" data-success="Отправлено" data-error="Ошибка отправки"
+					<?php (intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "") ?> name="web_form_submit" type="submit">
+                <!--<div class="form-button__title"><?= $arResult['arForm']['BUTTON'] ?></div>
+            </button>-->
         </div>
 
 
